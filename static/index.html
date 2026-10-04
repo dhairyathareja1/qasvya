@@ -20,6 +20,18 @@
             <button id="btn-unlock" type="button" class="secondary">Unlock</button>
           </div>
           <p id="message-state" aria-live="polite">No message sent yet.</p>
+
+          <div class="demo-controls">
+            <h3>Quantum demos</h3>
+            <label for="cheat-share">Cheating Bob: qubits kept for reading
+              (<output id="cheat-share-value" for="cheat-share">30%</output>)
+            </label>
+            <input id="cheat-share" type="range" min="0" max="100" value="30" />
+            <div class="actions">
+              <button id="btn-eve" type="button" class="secondary">Try Eve's measurement</button>
+              <button id="btn-leak" type="button" class="secondary">Leak key after recall</button>
+            </div>
+          </div>
         </section>
 
         <section class="panel" aria-labelledby="activity-title">

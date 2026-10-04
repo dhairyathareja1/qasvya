@@ -107,6 +107,89 @@ async function unlock() {
   }
 }
 
+function randomBases(n, shareZ) {
+  return Array.from({ length: n }, () => Math.random() < shareZ ? 0 : 1);
+}
+
+async function cheat() {
+  log("Action: Cheating Bob");
+  if (!requireMessage()) return;
+
+  try {
+    const share = Number($("cheat-share").value) / 100;
+    const measurement = await request("/measure", {
+      id: state.message.id,
+      bases: randomBases(state.message.n, share)
+    });
+    const proof = await request("/verify", {
+      id: state.message.id,
+      y: measurement.bits
+    });
+    const outcome = proof.ok ? "proof accepted" : "proof rejected";
+    log(`Cheating Bob kept about ${Math.round(share * 100)}% of qubits for reading; ${outcome}. ` +
+      `Mismatches: ${proof.mismatches}; checked: ${proof.checked}.`);
+  } catch (error) {
+    log(`Cheating Bob demo failed: ${error.message}`);
+  }
+}
+
+async function eve() {
+  log("Action: Eve's measurement");
+  if (!requireMessage()) return;
+
+  try {
+    const measurement = await request("/measure", {
+      id: state.message.id,
+      bases: randomBases(state.message.n, 0.5)
+    });
+    const guessedTheta = randomBases(state.message.n, 0.5);
+    const result = await request("/decrypt", {
+      id: state.message.id,
+      bits: measurement.bits,
+      theta: guessedTheta,
+      nonce: state.message.nonce,
+      blob: state.message.blob
+    });
+    log(result.ok
+      ? `Eve guessed enough to decrypt the message: ${result.text}`
+      : `Eve could not decrypt the message. Key agreement: ${(result.key_agreement * 100).toFixed(0)}%.`);
+  } catch (error) {
+    log(`Eve demo failed: ${error.message}`);
+  }
+}
+
+async function leakKey() {
+  log("Action: Leak key after recall");
+  if (!requireMessage()) return;
+  if (!state.recallBits) {
+    log("Key leak could not run: recall the message first.");
+    return;
+  }
+
+  try {
+    const released = await request("/release", { id: state.message.id });
+    const result = await request("/decrypt", {
+      id: state.message.id,
+      bits: state.recallBits,
+      theta: released.theta,
+      nonce: state.message.nonce,
+      blob: state.message.blob
+    });
+    log(result.ok
+      ? `After the key leak, the message decrypted: ${result.text}`
+      : `After the key leak, the recall data still could not decrypt the message. ` +
+        `Key agreement: ${(result.key_agreement * 100).toFixed(0)}%.`);
+  } catch (error) {
+    log(`Key leak demo failed: ${error.message}`);
+  }
+}
+
 $("btn-send").addEventListener("click", send);
 $("btn-recall").addEventListener("click", recall);
 $("btn-unlock").addEventListener("click", unlock);
+$("cheat-share").addEventListener("input", event => {
+  $("cheat-share-value").textContent = `${event.target.value}%`;
+});
+$("cheat-share").addEventListener("change", cheat);
+$("btn-eve").addEventListener("click", eve);
+$("btn-leak").addEventListener("click", leakKey);

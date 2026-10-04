@@ -104,6 +104,24 @@ button.secondary {
   color: #536078;
 }
 
+.demo-controls {
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid #d8deea;
+}
+
+.demo-controls h3 {
+  margin: 0 0 12px;
+  font-size: 1rem;
+}
+
+#cheat-share {
+  display: block;
+  width: 100%;
+  margin: 10px 0 14px;
+  accent-color: #3159c9;
+}
+
 #log {
   min-height: 320px;
   max-height: 65vh;
@@ -138,6 +156,10 @@ button.secondary {
     border-color: #30394a;
     background: #1b2331;
     box-shadow: none;
+  }
+
+  .demo-controls {
+    border-color: #30394a;
   }
 
   textarea {

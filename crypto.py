@@ -5,7 +5,8 @@ from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 
 def _pad(bits, theta):
     bits, theta = np.asarray(bits, dtype=int), np.asarray(theta, dtype=int)
-    return np.packbits(bits[theta == 0]).tobytes()
+    pad = np.packbits(bits[theta == 0]).tobytes()
+    return pad.ljust(16, b"\x00")[:16]
 
 
 def _xor(a, b):

@@ -2,9 +2,16 @@ import secrets
 import numpy as np
 from qiskit import QuantumCircuit
 from qiskit_aer import AerSimulator
+from qiskit_aer.noise import NoiseModel, ReadoutError
 
 N = 256  # 128 key pad bits, 128 check bits
 _sim = AerSimulator(method="stabilizer")
+
+
+def _noise_model(p):
+    nm = NoiseModel()
+    nm.add_all_qubit_readout_error(ReadoutError([[1 - p, p], [p, 1 - p]]))
+    return nm
 
 
 def prepare():
@@ -29,10 +36,15 @@ def build_circuit(x, theta, bases):
     return qc
 
 
-def measure(x, theta, bases):
+def measure(x, theta, bases, noise=0.0):
     x, theta, bases = (np.asarray(a, dtype=int) for a in (x, theta, bases))
-    out = _sim.run(build_circuit(x, theta, bases), shots=1, memory=True).result().get_memory()[0]
-    return np.array([int(b) for b in out[::-1]], dtype=int)  # Reverse Qiskit bit order
+    qc = build_circuit(x, theta, bases)
+    if noise > 0:
+        job = _sim.run(qc, shots=1, memory=True, noise_model=_noise_model(noise))
+    else:
+        job = _sim.run(qc, shots=1, memory=True)
+    out = job.result().get_memory()[0]
+    return np.array([int(b) for b in out[::-1]], dtype=int)
 
 
 def check_proof(y, x, theta, delta=0.0):

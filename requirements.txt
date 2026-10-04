@@ -1,10 +1,6 @@
-qiskit
-qiskit-aer
-fastapi
-uvicorn
-cryptography
-numpy
-pytest
-httpx
-matplotlib
-pylatexenc
+qiskit==2.5.2
+qiskit-aer==0.17.2
+fastapi==0.142.2
+uvicorn==0.54.0
+cryptography==46.0.6
+numpy==2.4.4

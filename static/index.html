@@ -39,7 +39,21 @@
           <pre id="log" aria-live="polite" aria-label="Activity log">Ready.</pre>
         </section>
       </div>
+
+      <section class="panel results-panel" aria-labelledby="results-title">
+        <h2 id="results-title">Cheating-Bob experiment results</h2>
+        <div class="chart-container">
+          <div id="results-chart" aria-label="Average pad bits kept and proof mismatches by share of qubits measured in Z"></div>
+        </div>
+        <p id="results-caption" class="data-caption" aria-live="polite">Loading saved experiment results…</p>
+      </section>
+
+      <figure class="panel circuit-panel">
+        <img src="/static/circuit.svg" alt="Quantum circuit for preparing, encoding, measuring, and reading qubits" />
+        <figcaption>Quantum circuit used in the protocol: Alice prepares and encodes qubits, then Bob measures them.</figcaption>
+      </figure>
     </main>
     <script src="/static/app.js"></script>
+    <script src="/static/results.js"></script>
   </body>
 </html>

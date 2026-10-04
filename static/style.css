@@ -136,6 +136,65 @@ button.secondary {
   overflow-wrap: anywhere;
 }
 
+.results-panel,
+.circuit-panel {
+  margin-top: 20px;
+}
+
+.chart-container {
+  width: 100%;
+}
+
+#results-chart svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+#results-chart .axis-line,
+#results-chart .grid-line {
+  stroke: #d8deea;
+  stroke-width: 1;
+}
+
+#results-chart text {
+  fill: currentColor;
+  font: 11px system-ui, sans-serif;
+}
+
+#results-chart .pad-bits {
+  stroke: #3159c9;
+}
+
+#results-chart .proof-mismatches {
+  stroke: #b8323c;
+}
+
+#results-chart .pad-label {
+  fill: #3159c9;
+}
+
+#results-chart .proof-label {
+  fill: #b8323c;
+}
+
+.data-caption {
+  margin: 12px 0 0;
+  color: #536078;
+}
+
+.circuit-panel img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.circuit-panel figcaption {
+  margin-top: 12px;
+  color: #536078;
+  line-height: 1.5;
+}
+
 @media (max-width: 720px) {
   body {
     padding: 20px 14px;
@@ -156,6 +215,16 @@ button.secondary {
     border-color: #30394a;
     background: #1b2331;
     box-shadow: none;
+  }
+
+  .data-caption,
+  .circuit-panel figcaption {
+    color: #b4bfd2;
+  }
+
+  #results-chart .axis-line,
+  #results-chart .grid-line {
+    stroke: #465269;
   }
 
   .demo-controls {

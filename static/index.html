@@ -8,7 +8,21 @@
   </head>
   <body>
     <main>
-      <h1>QRecall</h1>
+      <header class="page-header">
+        <h1>QRecall</h1>
+        <span id="status-badge" class="status-badge" aria-live="polite" hidden></span>
+      </header>
+
+      <section class="panel guide-panel" aria-labelledby="guide-title">
+        <h2 id="guide-title">Try it</h2>
+        <ol class="guide-steps">
+          <li>Send a message to create a locked quantum message.</li>
+          <li>Choose Recall to submit proof of deletion, or Unlock to read the message.</li>
+          <li>After Recall, leak the key and see whether the saved measurement can reveal the message.</li>
+          <li>Send a fresh message, then try the Cheating Bob slider or Eve's measurement.</li>
+        </ol>
+      </section>
+
       <div class="layout">
         <section class="panel" aria-labelledby="controls-title">
           <h2 id="controls-title">Message controls</h2>

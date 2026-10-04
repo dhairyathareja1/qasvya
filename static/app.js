@@ -1,4 +1,4 @@
-const state = { message: null, recallBits: null };
+const state = { message: null, recallBits: null, status: null, statusPolling: false };
 const $ = id => document.getElementById(id);
 
 function log(message) {
@@ -6,6 +6,40 @@ function log(message) {
   const activity = $("log");
   activity.textContent += `\n${entry}`;
   activity.scrollTop = activity.scrollHeight;
+}
+
+function setStatusBadge(status, announceChange = false) {
+  if (!["LOCKED", "DELETED", "UNLOCKED"].includes(status)) return;
+
+  const changed = state.status !== status;
+  state.status = status;
+  const badge = $("status-badge");
+  badge.textContent = status;
+  badge.className = `status-badge ${status.toLowerCase()}`;
+  badge.hidden = false;
+  if (changed && announceChange) log(`Message state changed to ${status}.`);
+}
+
+async function refreshMessageState() {
+  const id = state.message && state.message.id;
+  if (!id || state.statusPolling) return;
+
+  state.statusPolling = true;
+  try {
+    const response = await fetch(`/state/${encodeURIComponent(id)}`, {
+      method: "GET",
+      headers: { Accept: "application/json" },
+      cache: "no-store"
+    });
+    if (!response.ok) return;
+
+    const result = await response.json();
+    if (state.message && state.message.id === id) setStatusBadge(result.state, true);
+  } catch {
+    // Keep showing the latest known state while the status endpoint is unavailable.
+  } finally {
+    state.statusPolling = false;
+  }
 }
 
 async function request(path, body) {
@@ -52,8 +86,10 @@ async function send() {
     const message = await request("/send", { message: $("msg").value });
     state.message = message;
     state.recallBits = null;
+    setStatusBadge("LOCKED");
     $("message-state").textContent = `Message ${message.id} sent and locked (${message.n} qubits).`;
     log(`Send completed for message ${message.id}.`);
+    refreshMessageState();
   } catch (error) {
     log(`Send failed: ${error.message}`);
   }
@@ -193,3 +229,4 @@ $("cheat-share").addEventListener("input", event => {
 $("cheat-share").addEventListener("change", cheat);
 $("btn-eve").addEventListener("click", eve);
 $("btn-leak").addEventListener("click", leakKey);
+setInterval(refreshMessageState, 1000);

@@ -6,3 +6,5 @@ cryptography
 numpy
 pytest
 httpx
+matplotlib
+pylatexenc

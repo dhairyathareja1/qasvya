@@ -24,6 +24,59 @@ h1 {
   margin: 0 0 20px;
 }
 
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.page-header h1 {
+  margin-bottom: 16px;
+}
+
+.status-badge[hidden] {
+  display: none;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: #ad7200;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.status-badge.deleted {
+  background: #b8323c;
+}
+
+.status-badge.unlocked {
+  background: #24734a;
+}
+
+.guide-panel {
+  margin-bottom: 20px;
+}
+
+.guide-panel h2 {
+  margin: 0 0 10px;
+}
+
+.guide-steps {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 24px;
+  margin: 0;
+  padding-left: 24px;
+  line-height: 1.5;
+}
+
 .layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -201,6 +254,10 @@ button.secondary {
   }
 
   .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .guide-steps {
     grid-template-columns: 1fr;
   }
 }

@@ -3,70 +3,251 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>QRecall</title>
+    <meta name="theme-color" content="#0a1020" />
+    <meta name="description" content="QRecall is a simulation of quantum-certified message recall and verifiable deletion." />
+    <title>QRecall — Quantum-Certified Message Recall</title>
     <link rel="stylesheet" href="/static/style.css" />
   </head>
   <body>
-    <main>
-      <header class="page-header">
-        <h1>QRecall</h1>
-        <span id="status-badge" class="status-badge" aria-live="polite" hidden></span>
-      </header>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="ambient ambient-a" aria-hidden="true"></div>
+    <div class="ambient ambient-b" aria-hidden="true"></div>
+    <div class="ambient-grid" aria-hidden="true"></div>
 
-      <section class="panel guide-panel" aria-labelledby="guide-title">
-        <h2 id="guide-title">Try it</h2>
-        <ol class="guide-steps">
-          <li>Send a message to create a locked quantum message.</li>
-          <li>Choose Recall to submit proof of deletion, or Unlock to read the message.</li>
-          <li>After Recall, leak the key and see whether the saved measurement can reveal the message.</li>
-          <li>Send a fresh message, then try the Cheating Bob slider or Eve's measurement.</li>
+    <header class="site-header">
+      <nav class="nav-wrap" aria-label="Main navigation">
+        <a class="brand" href="#hero" aria-label="QRecall home">
+          <span class="brand-mark" aria-hidden="true">Q</span>
+          <span>QRecall</span>
+        </a>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#how-it-works">How it works</a>
+          <a href="#live-demo">Live demo</a>
+          <a href="#analytics">Analytics</a>
+          <a href="#team">Team</a>
+        </div>
+        <a class="nav-cta" href="#live-demo">Try the demo <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <section class="hero section-wrap" id="hero" aria-labelledby="hero-title">
+        <div class="hero-copy reveal">
+          <p class="eyebrow"><span class="eyebrow-dot"></span> Quantum communication, reimagined</p>
+          <h1 id="hero-title">QRecall<span class="hero-period">.</span></h1>
+          <p class="hero-subtitle">Quantum-Certified Message Recall &amp; Verifiable Deletion</p>
+          <p class="hero-description">Send a locked message, then recall it with proof. QRecall explores how quantum measurements can make deletion something you can verify.</p>
+          <p class="simulation-note"><span aria-hidden="true">ⓘ</span> This is a simulation of a quantum communication protocol. Real deployment requires genuine quantum communication hardware and quantum channels.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#live-demo">Try Demo <span aria-hidden="true">↓</span></a>
+            <a class="button button-quiet" href="#about">Learn More <span aria-hidden="true">→</span></a>
+          </div>
+          <div class="hero-proofpoints" aria-label="Project characteristics">
+            <span><i aria-hidden="true"></i> Verifiable recall</span>
+            <span><i aria-hidden="true"></i> AES-GCM encryption</span>
+            <span><i aria-hidden="true"></i> Quantum simulation</span>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal" aria-label="Illustration of a locked message with a quantum proof" role="img">
+          <div class="visual-orbit orbit-one"></div>
+          <div class="visual-orbit orbit-two"></div>
+          <span class="particle particle-one"></span>
+          <span class="particle particle-two"></span>
+          <span class="particle particle-three"></span>
+          <div class="quantum-chip chip-top"><span class="chip-dot"></span> PROOF READY</div>
+          <div class="message-card">
+            <div class="message-card-top"><span class="message-icon" aria-hidden="true">✳</span><span>SECURE MESSAGE</span><span class="lock-icon" aria-hidden="true">⌑</span></div>
+            <div class="message-lines"><i></i><i></i><i></i></div>
+            <div class="message-card-bottom"><span class="encrypted-label">AES-GCM ENCRYPTED</span><span class="secure-pill"><span></span> LOCKED</span></div>
+          </div>
+          <div class="qubit-strip" aria-hidden="true">
+            <span>0</span><span>1</span><span>+</span><span>0</span><span>+</span><span>1</span><span>0</span><span>+</span><span>1</span>
+          </div>
+          <div class="quantum-chip chip-bottom"><span aria-hidden="true">⌁</span> MEASUREMENT VERIFIED</div>
+          <div class="visual-caption">One measurement. One verifiable decision.</div>
+        </div>
+      </section>
+
+      <section class="content-section section-wrap reveal" id="about" aria-labelledby="about-title">
+        <div class="section-heading">
+          <p class="eyebrow">01 / THE IDEA</p>
+          <h2 id="about-title">What is <span>QRecall?</span></h2>
+          <p>“View once” can hide a button. It cannot prove a copy is gone.</p>
+        </div>
+        <div class="idea-grid">
+          <article class="feature-card idea-card">
+            <span class="card-index">THE PROBLEM</span>
+            <div class="idea-icon icon-copy" aria-hidden="true"><span></span><span></span></div>
+            <h3>Seeing once isn’t deleting</h3>
+            <p>A recipient can copy a message before it disappears. A conventional app has no reliable way to prove the remaining copy was destroyed.</p>
+          </article>
+          <article class="feature-card idea-card idea-card-highlight">
+            <span class="card-index">THE APPROACH</span>
+            <div class="idea-icon icon-wave" aria-hidden="true"><i></i><i></i><i></i></div>
+            <h3>Make the attempt observable</h3>
+            <p>QRecall simulates a protocol where choosing to read changes the quantum information. A later verification can reveal interference with a recall attempt.</p>
+          </article>
+          <article class="feature-card idea-card">
+            <span class="card-index">THE OUTCOME</span>
+            <div class="idea-icon icon-check" aria-hidden="true">✓</div>
+            <h3>Proof, not a promise</h3>
+            <p>The demo shows how a sender can test a receiver’s deletion claim before releasing the key that unlocks the encrypted message.</p>
+          </article>
+        </div>
+        <p class="scope-note"><span aria-hidden="true">✳</span> QRecall is an educational simulation, not a production quantum-secure messaging system.</p>
+      </section>
+
+      <section class="content-section section-wrap reveal" id="why-qrecall" aria-labelledby="why-title">
+        <div class="section-heading">
+          <p class="eyebrow">02 / WHY IT MATTERS</p>
+          <h2 id="why-title">A different kind of <span>trust.</span></h2>
+          <p>Traditional “view once” relies on the recipient behaving. QRecall explores a protocol that makes interference detectable.</p>
+        </div>
+        <div class="comparison-grid">
+          <article class="comparison-card traditional-card">
+            <div class="comparison-heading"><span class="comparison-symbol" aria-hidden="true">↗</span><div><span class="card-index">CONVENTIONAL</span><h3>Traditional view once</h3></div></div>
+            <ul>
+              <li><span class="cross" aria-hidden="true">×</span> Screenshot restrictions are easy to bypass</li>
+              <li><span class="cross" aria-hidden="true">×</span> No proof that a copy was deleted</li>
+              <li><span class="cross" aria-hidden="true">×</span> Trust is placed entirely in the recipient</li>
+            </ul>
+          </article>
+          <article class="comparison-card qrecall-card">
+            <div class="comparison-heading"><span class="comparison-symbol" aria-hidden="true">Q</span><div><span class="card-index">QUANTUM-INSPIRED</span><h3>QRecall</h3></div></div>
+            <ul>
+              <li><span class="check" aria-hidden="true">✓</span> Simulated quantum measurement protocol</li>
+              <li><span class="check" aria-hidden="true">✓</span> Verification can detect interference</li>
+              <li><span class="check" aria-hidden="true">✓</span> AES-GCM protects the message key</li>
+              <li><span class="check" aria-hidden="true">✓</span> Educational proof-of-concept with clear limits</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-section section-wrap reveal" id="how-it-works" aria-labelledby="how-title">
+        <div class="section-heading">
+          <p class="eyebrow">03 / THE FLOW</p>
+          <h2 id="how-title">How it <span>works.</span></h2>
+          <p>Five steps, one simulated quantum channel, and a clear choice between recall and unlock.</p>
+        </div>
+        <ol class="timeline">
+          <li class="timeline-step"><span class="timeline-number">01</span><div><h3>Send</h3><p>Alice encrypts the message and sends Bob a locked quantum register.</p></div><span class="timeline-tag">MESSAGE</span></li>
+          <li class="timeline-step"><span class="timeline-number">02</span><div><h3>Quantum key exchange <span class="inline-tag">SIMULATED</span></h3><p>Random bits and bases form the simulated quantum information behind the key.</p></div><span class="timeline-tag">PREPARE</span></li>
+          <li class="timeline-step"><span class="timeline-number">03</span><div><h3>Recall</h3><p>Bob measures in the recall basis and returns results as evidence of deletion.</p></div><span class="timeline-tag">MEASURE</span></li>
+          <li class="timeline-step"><span class="timeline-number">04</span><div><h3>Verification</h3><p>Alice checks the proof for mismatches that may reveal an attempt to keep information.</p></div><span class="timeline-tag">CHECK</span></li>
+          <li class="timeline-step"><span class="timeline-number">05</span><div><h3>Unlock</h3><p>If Alice chooses to release the key instead, Bob can recover and read the message.</p></div><span class="timeline-tag">RELEASE</span></li>
         </ol>
       </section>
 
-      <div class="layout">
-        <section class="panel" aria-labelledby="controls-title">
-          <h2 id="controls-title">Message controls</h2>
-          <label for="msg">Message</label>
-          <textarea id="msg" rows="4">Exam paper: Q1. Prove that sqrt(2) is irrational.</textarea>
-          <div class="actions">
-            <button id="btn-send" type="button">Send</button>
-            <button id="btn-recall" type="button" class="danger">Recall</button>
-            <button id="btn-unlock" type="button" class="secondary">Unlock</button>
-          </div>
-          <p id="message-state" aria-live="polite">No message sent yet.</p>
-
-          <div class="demo-controls">
-            <h3>Quantum demos</h3>
-            <label for="cheat-share">Cheating Bob: qubits kept for reading
-              (<output id="cheat-share-value" for="cheat-share">30%</output>)
-            </label>
-            <input id="cheat-share" type="range" min="0" max="100" value="30" />
-            <div class="actions">
-              <button id="btn-eve" type="button" class="secondary">Try Eve's measurement</button>
-              <button id="btn-leak" type="button" class="secondary">Leak key after recall</button>
-            </div>
-          </div>
-        </section>
-
-        <section class="panel" aria-labelledby="activity-title">
-          <h2 id="activity-title">Activity Log</h2>
-          <pre id="log" aria-live="polite" aria-label="Activity log">Ready.</pre>
-        </section>
-      </div>
-
-      <section class="panel results-panel" aria-labelledby="results-title">
-        <h2 id="results-title">Cheating-Bob experiment results</h2>
-        <div class="chart-container">
-          <div id="results-chart" aria-label="Average pad bits kept and proof mismatches by share of qubits measured in Z"></div>
+      <section class="content-section demo-section section-wrap reveal" id="live-demo" aria-labelledby="demo-title">
+        <div class="section-heading section-heading-inline">
+          <div><p class="eyebrow">04 / INTERACTIVE SIMULATION</p><h2 id="demo-title">Live <span>demo.</span></h2></div>
+          <p>Try a message flow. Each quantum register can be measured once.</p>
         </div>
-        <p id="results-caption" class="data-caption" aria-live="polite">Loading saved experiment results…</p>
+        <section class="try-panel" aria-labelledby="try-title">
+          <div class="try-panel-heading"><span class="try-spark" aria-hidden="true">✳</span><div><h3 id="try-title">Try it</h3><p>A quick path through the demo</p></div></div>
+          <ol class="guide-steps">
+            <li>Send a message to create a locked quantum message.</li>
+            <li>Choose Recall to submit proof of deletion, or Unlock to read the message.</li>
+            <li>After Recall, leak the key and see whether the saved measurement can reveal the message.</li>
+            <li>Send a fresh message, then try the Cheating Bob slider or Eve's measurement.</li>
+          </ol>
+        </section>
+
+        <div class="demo-grid">
+          <section class="demo-card control-card" aria-labelledby="controls-title">
+            <div class="demo-card-heading"><div><p class="eyebrow">MESSAGE WORKSPACE</p><h3 id="controls-title">Message controls</h3></div><span id="status-badge" class="status-badge" aria-live="polite" hidden></span></div>
+            <label for="msg">Your message</label>
+            <textarea id="msg" rows="4">Exam paper: Q1. Prove that sqrt(2) is irrational.</textarea>
+            <div class="actions">
+              <button id="btn-send" type="button" class="button button-primary">Send <span aria-hidden="true">↗</span></button>
+              <button id="btn-recall" type="button" class="button button-danger">Recall</button>
+              <button id="btn-unlock" type="button" class="button button-secondary">Unlock</button>
+            </div>
+            <p id="message-state" aria-live="polite">No message sent yet.</p>
+
+            <div class="demo-controls">
+              <div class="demo-subheading"><span class="eyebrow">ADVERSARIAL TESTS</span><h4>Explore the edge cases</h4></div>
+              <label for="cheat-share">Cheating Bob: qubits kept for reading <output id="cheat-share-value" for="cheat-share">30%</output></label>
+              <input id="cheat-share" type="range" min="0" max="100" value="30" />
+              <div class="actions demo-actions">
+                <button id="btn-eve" type="button" class="button button-secondary">Try Eve's measurement</button>
+                <button id="btn-leak" type="button" class="button button-secondary">Leak key after recall</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="demo-card activity-card" aria-labelledby="activity-title">
+            <div class="demo-card-heading"><div><p class="eyebrow">LIVE EVENT STREAM</p><h3 id="activity-title">Activity log</h3></div><span class="live-indicator"><i></i> LIVE</span></div>
+            <p class="activity-hint">Actions and server responses appear here as you explore.</p>
+            <pre id="log" aria-live="polite" aria-label="Activity log">Ready.</pre>
+            <div class="activity-foot"><span class="activity-dot"></span> Local simulation · no messages are stored permanently</div>
+          </section>
+        </div>
       </section>
 
-      <figure class="panel circuit-panel">
-        <img src="/static/circuit.svg" alt="Quantum circuit for preparing, encoding, measuring, and reading qubits" />
-        <figcaption>Quantum circuit used in the protocol: Alice prepares and encodes qubits, then Bob measures them.</figcaption>
-      </figure>
+      <section class="content-section analytics-section section-wrap reveal" id="analytics" aria-labelledby="analytics-title">
+        <div class="section-heading">
+          <p class="eyebrow">05 / SECURITY ANALYTICS</p>
+          <h2 id="analytics-title">Measure the <span>evidence.</span></h2>
+          <p>See how measurement choices affect verification, then explore the simulated quantum circuit.</p>
+        </div>
+        <div class="analytics-grid">
+          <article class="analytics-card security-results-card" aria-labelledby="results-title">
+            <div class="analytics-card-heading">
+              <span class="analytics-icon results-icon" aria-hidden="true">⌁</span>
+              <span class="card-index">EXPERIMENT DATA</span>
+              <h3 id="results-title">Security Results</h3>
+              <p>Average pad bits retained and proof mismatches across different cheating strategies.</p>
+            </div>
+            <div class="chart-frame">
+              <div id="results-chart" aria-label="Average pad bits kept and proof mismatches by share of qubits measured in Z"></div>
+            </div>
+            <p id="results-caption" class="data-caption" aria-live="polite">Loading saved experiment results…</p>
+          </article>
+
+          <figure class="analytics-card circuit-card">
+            <div class="analytics-card-heading">
+              <span class="analytics-icon circuit-icon" aria-hidden="true">⟲</span>
+              <span class="card-index">PROTOCOL VISUALIZATION</span>
+              <h3>Quantum Circuit</h3>
+              <p>A compact view of the simulated prepare, encode, measure, and read sequence.</p>
+            </div>
+            <div class="circuit-frame">
+              <img class="circuit-art" src="/static/circuit.svg" alt="Quantum circuit illustrating qubit preparation, basis encoding, and measurement" loading="lazy" />
+            </div>
+            <figcaption>Simulated BB84-style circuit used to illustrate secure key establishment and measurement.</figcaption>
+          </figure>
+        </div>
+        <p class="analytics-explainer">The chart demonstrates how increasing cheating introduces detectable mismatches during verification, while the quantum circuit illustrates the simulated BB84 protocol used for secure key establishment.</p>
+      </section>
+
+      <section class="content-section team-section section-wrap reveal" id="team" aria-labelledby="team-title">
+        <div class="section-heading">
+          <p class="eyebrow">06 / THE PEOPLE</p>
+          <h2 id="team-title">Meet Team <span>Qasvya.</span></h2>
+          <p>The developers behind QRecall.</p>
+        </div>
+        <div class="team-grid">
+          <article class="team-card"><div class="avatar avatar-one" aria-hidden="true">DT</div><h3>Dhairya Thareja</h3><p>Developer</p><span class="team-card-line"></span></article>
+          <article class="team-card"><div class="avatar avatar-two" aria-hidden="true">MK</div><h3>Manasvi Khare</h3><p>Developer</p><span class="team-card-line"></span></article>
+          <article class="team-card"><div class="avatar avatar-three" aria-hidden="true">SG</div><h3>Shreya Gupta</h3><p>Developer</p><span class="team-card-line"></span></article>
+        </div>
+      </section>
     </main>
+
+    <footer class="site-footer">
+      <div class="footer-main section-wrap">
+        <div class="footer-brand-block"><a class="brand" href="#hero"><span class="brand-mark" aria-hidden="true">Q</span><span>QRecall</span></a><p>Quantum-certified message recall, explored through simulation.</p></div>
+        <div class="footer-column"><h2>Explore</h2><a href="#about">About</a><a href="#how-it-works">How it works</a><a href="#team">Team</a></div>
+        <div class="footer-column"><h2>Technology</h2><span>Qiskit · Aer</span><span>FastAPI · Python</span><span>AES-GCM</span></div>
+        <div class="footer-column"><h2>Project</h2><a href="https://github.com/dhairyathareja1/qasvya" target="_blank" rel="noreferrer">GitHub repository ↗</a><a href="#team">Acknowledgements</a></div>
+      </div>
+      <div class="footer-bottom section-wrap"><span>© Team Qasvya · Qiskit Fall Fest</span><a href="#hero">Back to top ↑</a><span>Built as an educational simulation</span></div>
+    </footer>
+
     <script src="/static/app.js"></script>
     <script src="/static/results.js"></script>
   </body>

@@ -30,6 +30,22 @@ produce the recall proof. To produce the proof he must measure in H, which destr
     uvicorn api:app --reload        # open http://localhost:8000
     pytest                          # 10 tests, about 1 second
 
+## Public demo deployment
+**Public demo: not deployed yet.** The Dockerfile is ready, but the image must be built from
+the published repository before a public service URL can be added here.
+
+To deploy a free Docker web service on [Render](https://render.com/docs/docker):
+
+1. Publish this Dockerfile and README to the GitHub repository.
+2. In Render, create a **Web Service** and connect `dhairyathareja1/qasvya`.
+3. Set the runtime to **Docker**, the root directory to `.`, and the instance plan to **Free**.
+4. Set the health check path to `/health`, then create the service.
+5. Once the service is live, replace this status with its assigned `onrender.com` URL.
+
+Render free web services spin down after 15 minutes without traffic and may take about a minute
+to start again. Their filesystem is temporary, and this app stores messages in memory, so messages
+are lost when the service restarts or spins down. See [Render's free service limitations](https://render.com/docs/free).
+
 ## API (the contract between backend and frontend)
 All bodies are JSON. `bases`, `y`, `bits`, `theta` are lists of 256 values, each 0 or 1.
 

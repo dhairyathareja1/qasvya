@@ -1257,32 +1257,32 @@ button:disabled { cursor: wait; opacity: .58; }
   padding: 12px 7px 4px;
 }
 
-#results-chart {
-  width: 100%;
+.chart-image-frame {
+  min-height: 0;
+  padding: 8px;
+  background: radial-gradient(ellipse at 50% 45%, #fff 0%, #f4f6fa 73%, #e9edf5 100%);
 }
 
-#results-chart svg {
+.chart-image {
   display: block;
   width: 100%;
   height: auto;
-  overflow: visible;
+  border-radius: 8px;
 }
 
-#results-chart .axis-line,
-#results-chart .grid-line {
-  stroke: rgb(174 191 225 / 17%);
-  stroke-width: 1;
+.noise-icon {
+  color: #8be4d8;
+  border-color: rgb(103 225 210 / 21%);
 }
 
-#results-chart text {
-  fill: #a7b5ce;
-  font: 11px Inter, ui-sans-serif, system-ui, sans-serif;
-}
+.noise-card { grid-column: 1 / -1; }
 
-#results-chart .pad-bits { stroke: #9d91ff; }
-#results-chart .proof-mismatches { stroke: #64dfd0; }
-#results-chart .pad-label { fill: #b8adff; }
-#results-chart .proof-label { fill: #78e8da; }
+.noise-card figcaption {
+  margin: 13px 0 0;
+  color: #8190aa;
+  font-size: 0.65rem;
+  line-height: 1.65;
+}
 
 .data-caption {
   min-height: 1.2em;

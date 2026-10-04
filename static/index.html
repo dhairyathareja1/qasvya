@@ -192,18 +192,18 @@
         <div class="section-heading">
           <p class="eyebrow">05 / SECURITY ANALYTICS</p>
           <h2 id="analytics-title">Measure the <span>evidence.</span></h2>
-          <p>See how measurement choices affect verification, then explore the simulated quantum circuit.</p>
+          <p>Explore how cheating and readout noise affect verification, then inspect the simulated quantum circuit.</p>
         </div>
         <div class="analytics-grid">
           <article class="analytics-card security-results-card" aria-labelledby="results-title">
             <div class="analytics-card-heading">
               <span class="analytics-icon results-icon" aria-hidden="true">⌁</span>
-              <span class="card-index">EXPERIMENT DATA</span>
-              <h3 id="results-title">Security Results</h3>
-              <p>Average pad bits retained and proof mismatches across different cheating strategies.</p>
+              <span class="card-index">CHEATING STRATEGY</span>
+              <h3 id="results-title">The cheater’s trade-off</h3>
+              <p>Keeping more key bits leaves more mismatches for verification to detect.</p>
             </div>
-            <div class="chart-frame">
-              <div id="results-chart" aria-label="Average pad bits kept and proof mismatches by share of qubits measured in Z"></div>
+            <div class="chart-frame chart-image-frame">
+              <img class="chart-image" src="/static/results_chart.png" alt="Line chart showing average pad bits retained and proof mismatches rising as the share of qubits measured in Z increases" loading="lazy" />
             </div>
             <p id="results-caption" class="data-caption" aria-live="polite">Loading saved experiment results…</p>
           </article>
@@ -220,8 +220,21 @@
             </div>
             <figcaption>Simulated BB84-style circuit used to illustrate secure key establishment and measurement.</figcaption>
           </figure>
+
+          <figure class="analytics-card noise-card" aria-labelledby="noise-title">
+            <div class="analytics-card-heading">
+              <span class="analytics-icon noise-icon" aria-hidden="true">≈</span>
+              <span class="card-index">READOUT NOISE</span>
+              <h3 id="noise-title">When honest proofs get noisy</h3>
+              <p>Even an honest measurement can fail a strict check when readout noise is present.</p>
+            </div>
+            <div class="chart-frame chart-image-frame">
+              <img class="chart-image" src="/static/noise_chart.png" alt="Charts showing that readout noise lowers strict verification acceptance, while a tolerance of up to 10 mismatches restores near-total acceptance" loading="lazy" />
+            </div>
+            <figcaption class="data-caption">A tolerance of delta 0.08 accepts up to 10 mismatches across 128 check bits.</figcaption>
+          </figure>
         </div>
-        <p class="analytics-explainer">The chart demonstrates how increasing cheating introduces detectable mismatches during verification, while the quantum circuit illustrates the simulated BB84 protocol used for secure key establishment.</p>
+        <p class="analytics-explainer">The experiments show the trade-off between retaining key information and passing verification, as well as the effect of readout noise on honest proofs. The circuit illustrates the simulated BB84 protocol used for secure key establishment.</p>
       </section>
 
       <section class="content-section team-section section-wrap reveal" id="team" aria-labelledby="team-title">

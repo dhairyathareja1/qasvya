@@ -1,11 +1,33 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>QRecall</title>
+    <link rel="stylesheet" href="/static/style.css" />
   </head>
   <body>
-    <h1>QRecall</h1>
-    <p>Unsend a message with quantum proof. (UI coming soon)</p>
+    <main>
+      <h1>QRecall</h1>
+      <div class="layout">
+        <section class="panel" aria-labelledby="controls-title">
+          <h2 id="controls-title">Message controls</h2>
+          <label for="msg">Message</label>
+          <textarea id="msg" rows="4">Exam paper: Q1. Prove that sqrt(2) is irrational.</textarea>
+          <div class="actions">
+            <button id="btn-send" type="button">Send</button>
+            <button id="btn-recall" type="button" class="danger">Recall</button>
+            <button id="btn-unlock" type="button" class="secondary">Unlock</button>
+          </div>
+          <p id="message-state" aria-live="polite">No message sent yet.</p>
+        </section>
+
+        <section class="panel" aria-labelledby="activity-title">
+          <h2 id="activity-title">Activity Log</h2>
+          <pre id="log" aria-live="polite" aria-label="Activity log">Ready.</pre>
+        </section>
+      </div>
+    </main>
+    <script src="/static/app.js"></script>
   </body>
 </html>

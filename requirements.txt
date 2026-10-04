@@ -1,0 +1,8 @@
+qiskit
+qiskit-aer
+fastapi
+uvicorn
+cryptography
+numpy
+pytest
+httpx
